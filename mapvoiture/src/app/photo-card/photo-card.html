@@ -1,0 +1,15 @@
+<div id="photo-card" class="photo-card">
+  <img id="photo-image" src={{photomodel.image_location}} alt="Photo" class="photo" />
+
+  <div id="photo-info" class="info">
+    <h2 id="photo-title" class="title">{{photomodel.title}}</h2>
+    <h3 id="photo-date" class="date">{{photomodel.date}}</h3>
+    <p id="photo-location" class="location">{{photomodel.location}}</p>
+
+    <div
+  id="photo-color"
+  class="color-tag"
+  [style.backgroundColor]=photomodel.color>
+</div>
+  </div>
+</div>

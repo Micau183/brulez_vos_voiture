@@ -1,0 +1,13 @@
+<!-- app.component.html -->
+<div style="width: 90%; height: 700px;">
+  <app-map [photomodels]="photos"></app-map>
+
+
+  <div>
+  <app-photo-card
+    *ngFor="let photo of photos"
+    [photomodel]="photo">
+  </app-photo-card>
+</div>
+</div>
+
