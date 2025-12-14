@@ -1,13 +1,41 @@
-<!-- app.component.html -->
-<div style="width: 90%; height: 700px;">
-  <app-map [photomodels]="photos"></app-map>
+<div class="app-layout">
 
+  <!-- =====================
+       SIDEBAR GAUCHE
+  ====================== -->
+ <aside class="sidebar">
+  <div class="photo-list">
+    <app-photo-card *ngFor="let photo of photos" [photomodel]="photo"></app-photo-card>
+  </div>
+</aside>
 
-  <div>
-  <app-photo-card
-    *ngFor="let photo of photos"
-    [photomodel]="photo">
-  </app-photo-card>
+  <!-- =====================
+       MAP CENTRALE
+  ====================== -->
+  <main class="map-container">
+    <app-map [photomodels]="photos"></app-map>
+  </main>
+
+  <!-- =====================
+       PANEL DETAIL DROIT
+  ====================== -->
+  <aside class="detail-panel">
+    <h3 class="detail-title">Détail</h3>
+
+    <!-- Photo sélectionnée (placeholder pour l'instant) -->
+    <div class="detail-photo-wrapper">
+      <img
+        src="assets/placeholder.jpg"
+        alt="Photo sélectionnée"
+        class="detail-photo"
+      />
+    </div>
+
+    <div class="detail-info">
+      <h2>Description</h2>
+      <p>📅 Date</p>
+      <p>📍 Lieu</p>
+    </div>
+  </aside>
+
 </div>
-</div>
-

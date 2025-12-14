@@ -1,37 +1,67 @@
 .photo-card {
-  width: 280px;
+  display: flex;
+  width: 100%;
+  max-width: 400px;    /* réduit par rapport à 700px */
+  height: 120px;       /* réduit par rapport à 260px */
+
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #ddd;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.photo {
+.photo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* IMAGE */
+.photo-image-wrapper {
+  width: 35%;        /* légèrement réduit */
+  min-width: 100px;  /* limite minimale pour les petites cartes */
+  background: #eee;
+}
+
+.photo-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.info {
-  padding: 12px;
+/* INFOS */
+.photo-info {
+  width: 65%;             /* ajuste proportion image/infos */
+  padding: 10px 12px;     /* réduit le padding */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.title {
-  font-size: 1.2rem;
-  margin: 0;
-  font-weight: bold;
+.photo-description {
+  font-size: 1rem;  /* réduit pour tenir dans la carte */
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #222;
 }
 
-.location {
-  color: #666;
-  margin: 4px 0 10px;
+.photo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  font-size: 0.8rem;
+  color: #555;
+}
+/* BANDE COULEUR DROITE */
+.photo-card-color {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;        /* largeur de la bande */
+  height: 100%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
-.color-tag {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
-}

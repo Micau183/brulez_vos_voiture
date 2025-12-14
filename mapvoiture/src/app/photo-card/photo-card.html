@@ -1,15 +1,18 @@
-<div id="photo-card" class="photo-card">
-  <img id="photo-image" src={{photomodel.image_location}} alt="Photo" class="photo" />
-
-  <div id="photo-info" class="info">
-    <h2 id="photo-title" class="title">{{photomodel.title}}</h2>
-    <h3 id="photo-date" class="date">{{photomodel.date}}</h3>
-    <p id="photo-location" class="location">{{photomodel.location}}</p>
-
-    <div
-  id="photo-color"
-  class="color-tag"
-  [style.backgroundColor]=photomodel.color>
-</div>
+<div class="photo-card">
+  <!-- IMAGE -->
+  <div class="photo-image-wrapper">
+    <img src="{{ photomodel.image_location }}" alt="Photo" class="photo-image" />
   </div>
+
+  <!-- INFOS -->
+  <div class="photo-info">
+    <h2 class="photo-description">{{ photomodel.description }}</h2>
+    <div class="photo-meta">
+      <span class="photo-date">📅 {{ photomodel.date }}</span>
+      <span class="photo-location">📍 {{ photomodel.location }}</span>
+    </div>
+  </div>
+
+  <!-- Bande couleur droite -->
+  <div class="photo-card-color" [style.background-color]="photomodel.color"></div>
 </div>

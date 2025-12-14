@@ -37,8 +37,10 @@ export class App implements OnInit {
               image_location: `photos/${row.image_name}`,
               title: row.image_name,
               location: row.location,
-              color: '#0000ff', // couleur par défaut
-              date: row.date_taken
+              color: row.color,
+              date: row.date_taken,
+              description : row.description
+
             }));
             //console.log('Photos chargées :', this.photos);
           }
