@@ -9,6 +9,6 @@ export default `<!doctype html>
 <link rel="stylesheet" href="styles-SB4KVC7H.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-SB4KVC7H.css"></noscript></head>
 <body ngcm="">
   <app-root></app-root>
-<link rel="modulepreload" href="chunk-C6Q5SG76.js"><script src="scripts-O3BAXYX2.js" defer=""></script><script src="main-2OCAFQMD.js" type="module"></script></body>
+<link rel="modulepreload" href="chunk-C6Q5SG76.js"><script src="scripts-O3BAXYX2.js" defer=""></script><script src="main-GZOG4E2Q.js" type="module"></script></body>
 </html>
 `;
