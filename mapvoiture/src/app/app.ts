@@ -19,6 +19,7 @@ export class App implements OnInit {
   protected readonly title = signal('mapvoiture');
 
   photos: PhotoModel[] = [];
+  selectedPhoto: PhotoModel | null = null; // ← photo sélectionnée pour le panneau droit
 
   constructor(private http: HttpClient) {}
 
@@ -39,15 +40,19 @@ export class App implements OnInit {
               location: row.location,
               color: row.color,
               date: row.date_taken,
-              description : row.description
-
+              description: row.description
             }));
-            //console.log('Photos chargées :', this.photos);
           }
         });
       });
   }
+
+  // Méthode appelée depuis le composant map lorsqu'un marker est cliqué
+  onMarkerClick(photo: PhotoModel) {
+    this.selectedPhoto = photo;
+  }
 }
+
 
 // export class App {
 //   protected readonly title = signal('mapvoiture');

@@ -22,7 +22,7 @@ body {
 ===================================================== */
 .app-layout {
   display: grid;
-  grid-template-columns: 400px 1fr 420px; /* sidebar / map / detail */
+  grid-template-columns: 400px 1fr 600px; /* sidebar / map / detail */
   height: 100vh;
   width: 100vw;
   overflow: hidden; /* empêche scroll global */

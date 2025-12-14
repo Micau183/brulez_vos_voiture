@@ -5,7 +5,11 @@
   ====================== -->
  <aside class="sidebar">
   <div class="photo-list">
-    <app-photo-card *ngFor="let photo of photos" [photomodel]="photo"></app-photo-card>
+  <app-photo-card 
+    *ngFor="let photo of photos" 
+    [photomodel]="photo" 
+    (photoClicked)="selectedPhoto = $event">
+  </app-photo-card>
   </div>
 </aside>
 
@@ -13,29 +17,27 @@
        MAP CENTRALE
   ====================== -->
   <main class="map-container">
-    <app-map [photomodels]="photos"></app-map>
+   <app-map 
+  [photomodels]="photos"
+  (photoSelected)="selectedPhoto = $event">
+</app-map>
   </main>
 
-  <!-- =====================
-       PANEL DETAIL DROIT
-  ====================== -->
-  <aside class="detail-panel">
-    <h3 class="detail-title">Détail</h3>
+<!-- =====================
+     PANEL DETAIL DROIT
+====================== -->
+<aside class="detail-panel" *ngIf="selectedPhoto">
+  <h3 class="detail-title">{{ selectedPhoto.title }}</h3>
 
-    <!-- Photo sélectionnée (placeholder pour l'instant) -->
-    <div class="detail-photo-wrapper">
-      <img
-        src="assets/placeholder.jpg"
-        alt="Photo sélectionnée"
-        class="detail-photo"
-      />
-    </div>
+  <div class="detail-photo-wrapper">
+    <img [src]="selectedPhoto.image_location" alt="Photo sélectionnée" class="detail-photo"/>
+  </div>
 
-    <div class="detail-info">
-      <h2>Description</h2>
-      <p>📅 Date</p>
-      <p>📍 Lieu</p>
-    </div>
-  </aside>
+  <div class="detail-info">
+    <h2>{{ selectedPhoto.description || 'Pas de description' }}</h2>
+    <p>📅 {{ selectedPhoto.date }}</p>
+    <p>📍 {{ selectedPhoto.location }}</p>
+  </div>
+</aside>
 
 </div>
