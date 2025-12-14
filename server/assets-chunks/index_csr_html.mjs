@@ -1,0 +1,14 @@
+export default `<!doctype html>
+<html lang="en" data-beasties-container="">
+<head>
+  <meta charset="utf-8">
+  <title>Mapvoiture</title>
+  <base href="https://Micau183.github.io/brulez_vos_voiture/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles-SB4KVC7H.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-SB4KVC7H.css"></noscript></head>
+<body ngcm="">
+  <app-root></app-root>
+<link rel="modulepreload" href="chunk-C6Q5SG76.js"><script src="scripts-O3BAXYX2.js" defer=""></script><script src="main-2OCAFQMD.js" type="module"></script></body>
+</html>
+`;
