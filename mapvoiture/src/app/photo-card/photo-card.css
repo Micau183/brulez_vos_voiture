@@ -3,6 +3,7 @@
   width: 100%;
   max-width: 400px;    /* réduit par rapport à 700px */
   height: 120px;       /* réduit par rapport à 260px */
+  position: relative; /* needed so the absolute color band is positioned inside */
 
   border-radius: 12px;
   overflow: hidden;
@@ -67,5 +68,11 @@
   height: 100%;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
+  transition: width 250ms cubic-bezier(.22,.9,.3,1), transform 250ms cubic-bezier(.22,.9,.3,1);
+  will-change: width, transform;
+}
+
+.photo-card:hover .photo-card-color {
+  width: 32px; /* agrandit la bande au hover */
 }
 
