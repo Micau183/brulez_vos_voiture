@@ -22,9 +22,10 @@ body {
 ===================================================== */
 .app-layout {
   display: grid;
-  grid-template-columns: 400px 1fr 600px; /* sidebar / map / detail */
+  grid-template-columns: minmax(0, 400px) 1fr minmax(0, 600px); /* sidebar / map / detail (responsive) */
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden; /* empêche scroll global */
 }
 
@@ -37,6 +38,8 @@ body {
   flex-direction: column;
   background: #ffffff;
   border-right: 1px solid #ddd;
+  min-height: 0; /* allow children to shrink and enable scrolling */
+  min-width: 0; /* allow this column to shrink instead of causing overflow */
 }
 
 /* Titre de la sidebar */
@@ -52,18 +55,17 @@ body {
    - Scrollable
 ===================================================== */
 .photo-list {
- 
   min-height: 0;  
   overflow-y: auto;
   overflow-x: hidden;
 
-  padding: 10px;
+  padding: 10px 10px 10px 10px; /* top right bottom left - added left padding */
   flex-direction: column;
   gap: 10px;
 
   display: flex;
   width: 100%;
-  height: 100vh;
+  flex: 1 1 auto; /* grow to fill sidebar and allow scrolling */
   overflow: auto;
 }
 
@@ -150,6 +152,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  min-width: 0; /* allow map to shrink inside grid */
 }
 
 .map-container app-map {
@@ -167,6 +170,7 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* prevent panel content from forcing horizontal scroll */
 }
 
 .detail-title {

@@ -7,3 +7,15 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* Miniature utilisée pour les divIcons (bordure colorée) */
+.photo-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 0; /* bordure carrée */
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ff5722; /* default, overridden inline */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transform: translate(-1px, -1px);
+}

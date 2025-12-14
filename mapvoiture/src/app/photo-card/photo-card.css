@@ -9,6 +9,8 @@
 
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform; /* hint to promote to compositor */
+  contain: paint; /* limit repaints to this element */
 }
 
 .photo-card:hover {
@@ -27,6 +29,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateZ(0); /* promote to its own layer */
+  will-change: transform;
 }
 
 /* INFOS */

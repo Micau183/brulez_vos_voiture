@@ -2,6 +2,7 @@ import { Component, AfterViewInit, Inject, PLATFORM_ID, Input, Output, EventEmit
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { PhotoModel } from '../photo-model/photo-model';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +12,9 @@ import { PhotoModel } from '../photo-model/photo-model';
   styleUrls: ['./map.css']
 })
 export class MapComponent implements AfterViewInit {
+
+  private map!: L.Map;
+
     
   @Input() photomodels: PhotoModel[] = [];
 
@@ -23,11 +27,11 @@ export class MapComponent implements AfterViewInit {
     if (!isPlatformBrowser(this.platformId)) return;
 
     import('leaflet').then(L => {
-      const map = L.map('map').setView([45.1885, 5.7245], 13);
+      this.map = L.map('map').setView([45.1885, 5.7245], 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
+      }).addTo(this.map);
 
       const photoIcon = (url: string) =>
         L.icon({
@@ -47,13 +51,24 @@ export class MapComponent implements AfterViewInit {
         const marker = L.marker(coords as L.LatLngExpression, {
           icon: photoIcon(photo.image_location),
         })
-        .addTo(map);
+        .addTo(this.map);
 
         // 🔹 Détecte le clic sur le marker
         marker.on('click', () => {
           this.photoSelected.emit(photo);
+
+          this.map.setView(coords as L.LatLngExpression, 16, { animate: true });
         });
       });
     });
+  }
+
+
+
+  // Public method to center & zoom the map on a photo
+  focusOn(photo: PhotoModel, zoom: number = 16) {
+    if (!this.map || !photo || !photo.location) return;
+    const coords = photo.location.split(',').map(c => parseFloat(c.trim()));
+    this.map.setView(coords as L.LatLngExpression, zoom, { animate: true });
   }
 }

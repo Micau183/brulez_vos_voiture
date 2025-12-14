@@ -1,9 +1,11 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common'; 
 import { HttpClient } from '@angular/common/http';
 import { MapComponent } from './map/map'; // <-- import du composant map
 import {PhotoCardComponent} from './photo-card/photo-card';
 import { PhotoModel } from './photo-model/photo-model';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import * as Papa from 'papaparse';
 
 @Component({
@@ -20,6 +22,7 @@ export class App implements OnInit {
 
   photos: PhotoModel[] = [];
   selectedPhoto: PhotoModel | null = null; // ← photo sélectionnée pour le panneau droit
+  @ViewChild('mapComponent') mapComponent!: MapComponent;
 
   constructor(private http: HttpClient) {}
 
@@ -50,6 +53,14 @@ export class App implements OnInit {
   // Méthode appelée depuis le composant map lorsqu'un marker est cliqué
   onMarkerClick(photo: PhotoModel) {
     this.selectedPhoto = photo;
+  }
+
+  // Méthode appelée depuis la liste de photo (PhotoCard) lorsqu'une carte est cliquée
+  onPhotoCardClick(photo: PhotoModel) {
+    this.selectedPhoto = photo;
+    if (this.mapComponent && typeof this.mapComponent.focusOn === 'function') {
+      this.mapComponent.focusOn(photo, 16);
+    }
   }
 }
 

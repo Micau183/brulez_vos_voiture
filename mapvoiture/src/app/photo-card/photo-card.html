@@ -1,7 +1,7 @@
 <div class="photo-card" (click)="onClick()">
   <!-- IMAGE -->
   <div class="photo-image-wrapper">
-    <img src="{{ photomodel.image_location }}" alt="Photo" class="photo-image" />
+    <img src="{{ photomodel.image_location }}" alt="Photo" class="photo-image" loading="lazy" decoding="async" width="140" height="80" />
   </div>
 
   <!-- INFOS -->

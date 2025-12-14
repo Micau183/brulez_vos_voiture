@@ -8,7 +8,7 @@
   <app-photo-card 
     *ngFor="let photo of photos" 
     [photomodel]="photo" 
-    (photoClicked)="selectedPhoto = $event">
+    (photoClicked)="onPhotoCardClick($event)">
   </app-photo-card>
   </div>
 </aside>
@@ -19,6 +19,7 @@
   <main class="map-container">
    <app-map 
   [photomodels]="photos"
+  #mapComponent
   (photoSelected)="selectedPhoto = $event">
 </app-map>
   </main>
@@ -30,7 +31,7 @@
   <h3 class="detail-title">{{ selectedPhoto.title }}</h3>
 
   <div class="detail-photo-wrapper">
-    <img [src]="selectedPhoto.image_location" alt="Photo sélectionnée" class="detail-photo"/>
+    <img [src]="selectedPhoto.image_location" alt="Photo sélectionnée" class="detail-photo" (click)="onPhotoCardClick(selectedPhoto)" style="cursor: pointer;"/>
   </div>
 
   <div class="detail-info">
