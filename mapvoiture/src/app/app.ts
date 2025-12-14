@@ -86,7 +86,8 @@ export class App implements OnInit {
   }
 
   // Télécharge l'image (simple fallback)
-  download(photo: PhotoModel) {
+  download(photo: PhotoModel | null) {
+    if (!photo) return;
     try {
       const link = document.createElement('a');
       link.href = photo.image_location;
@@ -100,7 +101,8 @@ export class App implements OnInit {
   }
 
   // Partage via Web Share API si disponible, sinon copie le lien
-  async share(photo: PhotoModel) {
+  async share(photo: PhotoModel | null) {
+    if (!photo) return;
     const url = location.origin + '/' + photo.image_location;
     if ((navigator as any).share) {
       try {
@@ -116,7 +118,8 @@ export class App implements OnInit {
     }
   }
 
-  toggleFavorite(photo: PhotoModel) {
+  toggleFavorite(photo: PhotoModel | null) {
+    if (!photo) return;
     // add property dynamically if absent
     (photo as any).favorite = !(photo as any).favorite;
   }
@@ -136,6 +139,10 @@ export class App implements OnInit {
               date: row.date_taken,
               description: row.description
             }));
+              // select the first photo by default so the detail panel shows on init
+              if (this.photos && this.photos.length > 0) {
+                this.onPhotoCardClick(this.photos[0]);
+              }
           }
         });
       });

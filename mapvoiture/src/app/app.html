@@ -27,21 +27,32 @@
 <!-- =====================
      PANEL DETAIL DROIT
 ====================== -->
-<aside class="detail-panel" *ngIf="selectedPhoto">
-  <h3 class="detail-title">{{ selectedPhoto.title }}</h3>
+<aside class="detail-panel">
+  <h3 class="detail-title">{{ selectedPhoto?.title || 'Aucune photo sélectionnée' }}</h3>
 
   <div class="detail-photo-wrapper">
-    <img [src]="selectedPhoto.image_location" alt="Photo sélectionnée" class="detail-photo" (click)="onPhotoCardClick(selectedPhoto)" style="cursor: pointer;"/>
+    <ng-container *ngIf="selectedPhoto; else noPhoto">
+      <img [src]="selectedPhoto.image_location" alt="Photo sélectionnée" class="detail-photo" (click)="onPhotoCardClick(selectedPhoto)" style="cursor: pointer;"/>
+    </ng-container>
+    <ng-template #noPhoto>
+      <div class="detail-photo-placeholder">Sélectionnez une photo pour voir le détail</div>
+    </ng-template>
   </div>
 
   <div class="detail-info">
-    <h2>{{ selectedPhoto.description || 'Pas de description' }}</h2>
-    <p>📅 {{ selectedPhoto.date }}</p>
-    <p>📍 {{ selectedPhoto.location }}</p>
+    <ng-container *ngIf="selectedPhoto; else noInfo">
+      <h2>{{ selectedPhoto.description || 'Pas de description' }}</h2>
+      <p>📅 {{ selectedPhoto.date }}</p>
+      <p>📍 {{ selectedPhoto.location }}</p>
+    </ng-container>
+    <ng-template #noInfo>
+      <h2>Aucune photo sélectionnée</h2>
+      <p>Choisissez une photo dans la liste pour voir ses détails.</p>
+    </ng-template>
   </div>
 
-  <!-- Menu actions en bas à droite du panneau détail -->
-  <div class="detail-actions" *ngIf="selectedPhoto">
+  <!-- Menu actions en bas à droite du panneau détail (toujours visible) -->
+  <div class="detail-actions">
     <div class="pie-and-legend">
       <app-pie-chart [items]="colorDistribution"></app-pie-chart>
       <div class="color-legend">
@@ -58,9 +69,9 @@
     </div>
 
     <div class="actions-row">
-      <button class="action-btn" (click)="download(selectedPhoto)" aria-label="Télécharger">⬇️</button>
-      <button class="action-btn" (click)="share(selectedPhoto)" aria-label="Partager">🔗</button>
-      <button class="action-btn" (click)="toggleFavorite(selectedPhoto)" [class.favorited]="selectedPhoto.favorite" aria-label="Favoris">⭐</button>
+      <button class="action-btn" (click)="download(selectedPhoto)" aria-label="Télécharger" [disabled]="!selectedPhoto">⬇️</button>
+      <button class="action-btn" (click)="share(selectedPhoto)" aria-label="Partager" [disabled]="!selectedPhoto">🔗</button>
+      <button class="action-btn" (click)="toggleFavorite(selectedPhoto)" [class.favorited]="selectedPhoto?.favorite" aria-label="Favoris" [disabled]="!selectedPhoto">⭐</button>
     </div>
   </div>
 </aside>
