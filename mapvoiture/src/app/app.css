@@ -171,6 +171,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0; /* prevent panel content from forcing horizontal scroll */
+  position: relative; /* for absolutely positioned actions menu */
 }
 
 .detail-title {
@@ -205,6 +206,107 @@ body {
   margin: 4px 0;
   font-size: 0.9rem;
   color: #555;
+}
+
+/* MENU D'ACTIONS (COIN BAS DROIT) */
+.detail-actions {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  align-items: center;
+}
+
+/* ensure pie chart in actions sizes correctly */
+.detail-actions app-pie-chart {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+
+/* Make action buttons compact to match larger pie */
+.action-btn {
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.action-btn {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 8px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  font-size: 1rem;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.action-btn.favorited {
+  background: linear-gradient(90deg, #ffd166, #ff9a66);
+  color: #222;
+}
+
+/* Pie + legend layout */
+.pie-and-legend {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.color-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 110px;
+}
+
+/* Make legend visually distinct and ensure it's not clipped */
+.color-legend {
+  background: rgba(255,255,255,0.98);
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 40;
+  max-height: 160px;
+  overflow: auto;
+}
+
+.color-legend-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.color-legend .swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.color-legend .label {
+  color: #222;
+}
+
+.actions-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* =====================================================

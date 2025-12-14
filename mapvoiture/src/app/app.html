@@ -39,6 +39,30 @@
     <p>📅 {{ selectedPhoto.date }}</p>
     <p>📍 {{ selectedPhoto.location }}</p>
   </div>
+
+  <!-- Menu actions en bas à droite du panneau détail -->
+  <div class="detail-actions" *ngIf="selectedPhoto">
+    <div class="pie-and-legend">
+      <app-pie-chart [items]="colorDistribution"></app-pie-chart>
+      <div class="color-legend">
+        <ng-container *ngIf="colorDistributionWithPercent && colorDistributionWithPercent.length; else noLegend">
+          <div class="color-legend-item" *ngFor="let it of colorDistributionWithPercent">
+            <span class="swatch" [style.background]="it.color"></span>
+            <span class="label">{{ it.value }} — {{ it.percent }}%</span>
+          </div>
+        </ng-container>
+        <ng-template #noLegend>
+          <div class="color-legend-item no-data">Aucune couleur</div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="actions-row">
+      <button class="action-btn" (click)="download(selectedPhoto)" aria-label="Télécharger">⬇️</button>
+      <button class="action-btn" (click)="share(selectedPhoto)" aria-label="Partager">🔗</button>
+      <button class="action-btn" (click)="toggleFavorite(selectedPhoto)" [class.favorited]="selectedPhoto.favorite" aria-label="Favoris">⭐</button>
+    </div>
+  </div>
 </aside>
 
 </div>

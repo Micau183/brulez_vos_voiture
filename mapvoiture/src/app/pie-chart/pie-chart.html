@@ -1,0 +1,7 @@
+<div class="pie-chart" *ngIf="items && items.length">
+  <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ng-container *ngFor="let it of items; let i = index">
+      <path [attr.d]="arcPath(i)" [attr.fill]="it.color"></path>
+    </ng-container>
+  </svg>
+</div>
